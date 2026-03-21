@@ -1,0 +1,116 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Zaskroniec",
+  "scopeName": "source.zas",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#constants"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.zas",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.zas",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.zas",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.zas",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.zas",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.zas",
+          "match": "\\b(jezeli|jesli|albo_jesli|inaczej|w_przeciwnym_razie|dopoki|dla|w|przerwij|kontynuuj|pomin|sprobuj|przechwyc|wyjatek|wreszcie|rzuc|zapewnij|z_kontekstem|zaimportuj|z|jako|oczekuj|asynchronicznie|usun|globalna|nielokalna)\\b"
+        },
+        {
+          "name": "keyword.declaration.zas",
+          "match": "\\b(zdefiniuj|klasa|zwroc|dostarcz|anonimowa)\\b"
+        },
+        {
+          "name": "keyword.operator.logical.zas",
+          "match": "\\b(oraz|lub|albo|nie|jest)\\b"
+        },
+        {
+          "name": "support.function.builtin.zas",
+          "match": "\\b(wypisz|zasieg|dlugosc|napis|calkowita|zmienna_przecinkowa|logiczna|lista|slownik|zbior|krotka|bezwzgledna|suma|minimum|maksimum|zaokraglij|typ|otworz)\\b"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.zas",
+          "match": "\\b(Prawda|Falsz|Nic)\\b"
+        },
+        {
+          "name": "constant.numeric.zas",
+          "match": "\\b[0-9]+(\\.[0-9]+)?\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "match": "\\b(zdefiniuj)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.zas"
+            },
+            "2": {
+              "name": "entity.name.function.zas"
+            }
+          }
+        },
+        {
+          "match": "\\b(klasa)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.zas"
+            },
+            "2": {
+              "name": "entity.name.class.zas"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

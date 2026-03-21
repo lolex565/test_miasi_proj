@@ -1,0 +1,105 @@
+# ==== TEST 1: Podstawowe (zmienne, petle, warunki, wypisz) ====
+wypisz("--- TEST 1: Zmienne, Petle, Warunki ---")
+calkowita_zmienna = calkowita("5")
+wypisz("Zmienna to:", calkowita_zmienna)
+
+jezeli calkowita_zmienna > 3 oraz nie Falsz:
+    wypisz("Warunki logiczne (oraz, nie, Prawda) dzialaja.")
+
+licznik = 0
+dopoki licznik < 2:
+    wypisz("Petla dopoki, przebieg", licznik)
+    licznik = licznik + 1
+    jezeli licznik == 2:
+        wypisz("Przerywam petle dopoki!")
+        przerwij
+
+dla i w zasieg(3):
+    jezeli i == 1:
+        pomin
+    albo_jesli i == 0:
+        kontynuuj
+    inaczej:
+        wypisz("Petla dla. Wartosc:", i)
+
+# ==== TEST 2: Operatoy tozsamosci oraz wyjatki (jest, rzuc, sprobuj, przechwyc) ====
+wypisz("\n--- TEST 2: Wyjatki i Asertywnosc ---")
+pusta_zmienna = Nic
+
+jezeli pusta_zmienna jest Nic:
+    wypisz("Operator tozsamosci (jest) dziala.")
+
+zapewnij 2 + 2 == 4, "Asercja matematyczna (zapewnij)"
+
+sprobuj:
+    rzuc Exception("Zabawa w bledy")
+przechwyc Exception jako e:
+    wypisz("Zlapano:", e)
+wreszcie:
+    wypisz("Wyjatki w pelni obsluzone.")
+
+# ==== TEST 3: Funkcje, pamiec i wbudowane liczbowe ====
+wypisz("\n--- TEST 3: Pamiec i Matematyka ---")
+
+zmienna_globalna = 100
+
+zdefiniuj funkcja_matematyczna():
+    globalna zmienna_globalna
+    zmienna_globalna = zmienna_globalna + 10
+    
+    lista_cyfr = lista([1, 2, 3, 4, -5])
+    
+    dodawanie = anonimowa x: x + 1
+    wypisz("Sumowanie anonimowe:", dodawanie(4))
+    
+    najm = minimum(lista_cyfr)
+    najw = maksimum(lista_cyfr)
+    zsumowane = suma(lista_cyfr)
+    absolut = bezwzgledna(najm)
+    zaokraglenie = zaokraglij(3.14159, 2)
+    
+    wypisz("Min:", najm, "Max:", najw, "Suma:", zsumowane, "Absolutna:", absolut, "Zaokraglone:", zaokraglenie)
+    zwroc typ(lista_cyfr)
+
+wymagany_typ = funkcja_matematyczna()
+wypisz("Zwrocony typ to:", wymagany_typ, "a zmienna globalna to:", zmienna_globalna)
+
+niepotrzebna_zmienna = "Do usuniecia"
+usun niepotrzebna_zmienna
+
+# ==== TEST 4: Klasy, generatory ====
+wypisz("\n--- TEST 4: Klasy i Generatory ---")
+klasa TestowaKlasa:
+    zdefiniuj __init__(sam, imie):
+        sam.imie = napis(imie)
+    
+    zdefiniuj generator_przywitan(sam):
+        dostarcz "Czesc " + sam.imie
+        dostarcz "Witaj " + sam.imie
+
+obiekt = TestowaKlasa("Swiecie")
+dla powitanie w obiekt.generator_przywitan():
+    wypisz(powitanie)
+
+# ==== TEST 5: Słowniki, zbiory, krotki ====
+wypisz("\n--- TEST 5: Kolekcje ---")
+zb = zbior([1, 1, 2])
+s = slownik({"klucz": "wartosc"})
+k = krotka((1, "dwa", Prawda))
+
+wypisz("Zbior:", zb, "Slownik:", s, "Krotka:", k)
+wypisz("Dlugosc slownika:", dlugosc(s))
+
+# ==== TEST 6: Asynchroniczność ====
+# (Definiujemy ale nie uruchamiamy petli glownej asyncio by skrypt dzialal liniowo bez blokad)
+zaimportuj asyncio
+
+asynchronicznie zdefiniuj testowanie_asynchroniczne():
+    wypisz("\n--- TEST 6: Asynchroniczność ---")
+    wypisz("Sekcja asynchroniczna dziala!")
+    oczekuj asyncio.sleep(0.01)
+
+# Skrypt uruchamia event loop by sprawdzic czy asynch/oczekuj zadzialalo poprawnie w symulacji
+asyncio.run(testowanie_asynchroniczne())
+
+wypisz("\nPelne testy zaliczone spiewajaco!")

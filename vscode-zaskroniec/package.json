@@ -1,0 +1,35 @@
+{
+  "name": "zaskroniec",
+  "displayName": "Zaskroniec",
+  "description": "Wsparcie skladni dla jezyka Zaskroniec",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "publisher": "moj-projekt",
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "zaskroniec",
+        "aliases": [
+          "Zaskroniec",
+          "zas"
+        ],
+        "extensions": [
+          ".zas"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "zaskroniec",
+        "scopeName": "source.zas",
+        "path": "./syntaxes/zaskroniec.tmLanguage.json"
+      }
+    ]
+  }
+}
