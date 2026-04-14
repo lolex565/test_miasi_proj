@@ -1,8 +1,54 @@
 import sys
 import os
 import subprocess
+import re
 from antlr4 import *
 from ZaskroniecLexer import ZaskroniecLexer
+
+def transform_custom_constructs(code):
+    lines = code.splitlines(keepends=True)
+    transformed = []
+    do_stack = []
+
+    repeat_pattern = re.compile(r'^(\s*)repeat\s+(.+?)\s+times\s*:\s*(#.*)?$')
+    do_pattern = re.compile(r'^(\s*)do\s*:\s*(#.*)?$')
+    while_pattern = re.compile(r'^(\s*)while\s+(.+?)\s*(#.*)?$')
+
+    for line in lines:
+        stripped_line = line.rstrip('\r\n')
+        newline = line[len(stripped_line):]
+
+        repeat_match = repeat_pattern.match(stripped_line)
+        if repeat_match:
+            indent, count_expr, comment = repeat_match.groups()
+            new_line = f"{indent}for _ in range({count_expr}):"
+            if comment:
+                new_line += f" {comment}"
+            transformed.append(new_line + newline)
+            continue
+
+        do_match = do_pattern.match(stripped_line)
+        if do_match:
+            indent = do_match.group(1)
+            do_stack.append(len(indent))
+            transformed.append(f"{indent}while True:{newline}")
+            continue
+
+        while_match = while_pattern.match(stripped_line)
+        if while_match and do_stack:
+            indent, condition, comment = while_match.groups()
+            if len(indent) == do_stack[-1] and not condition.endswith(':'):
+                do_stack.pop()
+                inner_indent = f"{indent}    "
+                transformed.append(f"{inner_indent}if not ({condition}):{newline}")
+                transformed.append(f"{inner_indent}    break{newline}")
+                if comment:
+                    transformed[-2] = transformed[-2].rstrip('\r\n') + f" {comment}" + newline
+                continue
+
+        transformed.append(line)
+
+    return "".join(transformed)
 
 def main():
     if len(sys.argv) < 2:
@@ -26,6 +72,9 @@ def main():
     token_map = {
         ZaskroniecLexer.PRINT: "print",
         ZaskroniecLexer.WHILE: "while",
+        ZaskroniecLexer.DO: "do",
+        ZaskroniecLexer.REPEAT: "repeat",
+        ZaskroniecLexer.TIMES: "times",
         ZaskroniecLexer.IF: "if",
         ZaskroniecLexer.ELIF: "elif",
         ZaskroniecLexer.ELSE: "else",
@@ -90,6 +139,7 @@ def main():
             output_code.append(token.text)
             
     compiled_code = "".join(output_code)
+    compiled_code = transform_custom_constructs(compiled_code)
     out_filename = input_file + ".py"
     
     with open(out_filename, 'w', encoding='utf-8') as f:

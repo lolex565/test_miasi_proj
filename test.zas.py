@@ -14,6 +14,16 @@ while licznik < 2:
         print("Przerywam petle dopoki!")
         break
 
+dowhile_licznik = 0
+while True:
+    print("Petla wykonuj-dopoki, przebieg", dowhile_licznik)
+    dowhile_licznik = dowhile_licznik + 1
+    if not (dowhile_licznik < 2):
+        break
+
+for _ in range(2):
+    print("Petla powtorz-razy dziala.")
+
 for i in range(3):
     if i == 1:
         pass
