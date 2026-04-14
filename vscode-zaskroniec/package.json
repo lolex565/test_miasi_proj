@@ -56,7 +56,7 @@
       "editor/title": [
         {
           "command": "zaskroniec.runFile",
-          "when": "resourceExtname == .zas",
+          "when": "resourceExtname == '.zas'",
           "group": "navigation@100"
         }
       ]

@@ -5,7 +5,7 @@ import re
 from antlr4 import *
 from ZaskroniecLexer import ZaskroniecLexer
 
-def transform_custom_constructs(code):
+def transform_loop_constructs(code):
     lines = code.splitlines(keepends=True)
     transformed = []
     do_stack = []
@@ -30,14 +30,14 @@ def transform_custom_constructs(code):
         do_match = do_pattern.match(stripped_line)
         if do_match:
             indent = do_match.group(1)
-            do_stack.append(len(indent))
+            do_stack.append(indent)
             transformed.append(f"{indent}while True:{newline}")
             continue
 
         while_match = while_pattern.match(stripped_line)
         if while_match and do_stack:
             indent, condition, comment = while_match.groups()
-            if len(indent) == do_stack[-1]:
+            if indent == do_stack[-1]:
                 do_stack.pop()
                 inner_indent = f"{indent}    "
                 transformed.append(f"{inner_indent}if not ({condition}):{newline}")
@@ -139,7 +139,7 @@ def main():
             output_code.append(token.text)
             
     compiled_code = "".join(output_code)
-    compiled_code = transform_custom_constructs(compiled_code)
+    compiled_code = transform_loop_constructs(compiled_code)
     out_filename = input_file + ".py"
     
     with open(out_filename, 'w', encoding='utf-8') as f:

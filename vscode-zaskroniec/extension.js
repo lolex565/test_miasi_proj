@@ -26,7 +26,7 @@ function activate(context) {
     const workspacePath = workspaceFolder.uri.fsPath;
     const transpilerPath = path.join(workspacePath, 'zaskroniec.py');
     if (!fs.existsSync(transpilerPath)) {
-      vscode.window.showErrorMessage('Nie znaleziono pliku zaskroniec.py w katalogu workspace.');
+      vscode.window.showErrorMessage(`Nie znaleziono pliku zaskroniec.py w katalogu: ${workspacePath}`);
       return;
     }
 
