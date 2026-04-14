@@ -5,12 +5,12 @@ import re
 from antlr4 import *
 from ZaskroniecLexer import ZaskroniecLexer
 
-def transform_loop_constructs(code):
+def transform_extended_constructs(code):
     lines = code.splitlines(keepends=True)
     transformed = []
     do_stack = []
 
-    repeat_pattern = re.compile(r'^(\s*)repeat\s+(.+?)\s+times\s*:\s*(#.*)?$')
+    let_pattern = re.compile(r'^(\s*)let\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+?)\s*(#.*)?$')
     do_pattern = re.compile(r'^(\s*)do\s*:\s*(#.*)?$')
     while_pattern = re.compile(r'^(\s*)while\s+(.+?)\s*(#.*)?$')
 
@@ -18,10 +18,10 @@ def transform_loop_constructs(code):
         stripped_line = line.rstrip('\r\n')
         newline = line[len(stripped_line):]
 
-        repeat_match = repeat_pattern.match(stripped_line)
-        if repeat_match:
-            indent, count_expr, comment = repeat_match.groups()
-            new_line = f"{indent}for _ in range({count_expr}):"
+        let_match = let_pattern.match(stripped_line)
+        if let_match:
+            indent, variable_name, expression, comment = let_match.groups()
+            new_line = f"{indent}{variable_name} = {expression}"
             if comment:
                 new_line += f" {comment}"
             transformed.append(new_line + newline)
@@ -73,8 +73,6 @@ def main():
         ZaskroniecLexer.PRINT: "print",
         ZaskroniecLexer.WHILE: "while",
         ZaskroniecLexer.DO: "do",
-        ZaskroniecLexer.REPEAT: "repeat",
-        ZaskroniecLexer.TIMES: "times",
         ZaskroniecLexer.IF: "if",
         ZaskroniecLexer.ELIF: "elif",
         ZaskroniecLexer.ELSE: "else",
@@ -85,6 +83,7 @@ def main():
         ZaskroniecLexer.CLASS: "class",
         ZaskroniecLexer.YIELD: "yield",
         ZaskroniecLexer.LAMBDA: "lambda",
+        ZaskroniecLexer.LET: "let",
         ZaskroniecLexer.TRUE: "True",
         ZaskroniecLexer.FALSE: "False",
         ZaskroniecLexer.NONE: "None",
@@ -139,7 +138,7 @@ def main():
             output_code.append(token.text)
             
     compiled_code = "".join(output_code)
-    compiled_code = transform_loop_constructs(compiled_code)
+    compiled_code = transform_extended_constructs(compiled_code)
     out_filename = input_file + ".py"
     
     with open(out_filename, 'w', encoding='utf-8') as f:

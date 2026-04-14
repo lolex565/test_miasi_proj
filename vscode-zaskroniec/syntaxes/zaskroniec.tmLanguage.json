@@ -58,7 +58,7 @@
       "patterns": [
         {
           "name": "keyword.control.zas",
-          "match": "\\b(jezeli|jesli|albo_jesli|inaczej|w_przeciwnym_razie|dopoki|dla|w|przerwij|kontynuuj|pomin|wykonuj|powtorz|razy|sprobuj|przechwyc|wyjatek|wreszcie|rzuc|zapewnij|z_kontekstem|zaimportuj|z|jako|oczekuj|asynchronicznie|usun|globalna|nielokalna)\\b"
+          "match": "\\b(jezeli|jesli|albo_jesli|inaczej|w_przeciwnym_razie|dopoki|dla|w|przerwij|kontynuuj|pomin|wykonuj|niech|sprobuj|przechwyc|wyjatek|wreszcie|rzuc|zapewnij|z_kontekstem|zaimportuj|z|jako|oczekuj|asynchronicznie|usun|globalna|nielokalna)\\b"
         },
         {
           "name": "keyword.declaration.zas",

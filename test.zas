@@ -20,8 +20,8 @@ wykonuj:
     dowhile_licznik = dowhile_licznik + 1
 dopoki dowhile_licznik < 2
 
-powtorz 2 razy:
-    wypisz("Petla powtorz-razy dziala.")
+niech wartosc_let = calkowita_zmienna + 10
+wypisz("Konstrukcja funkcyjna niech:", wartosc_let)
 
 dla i w zasieg(3):
     jezeli i == 1:

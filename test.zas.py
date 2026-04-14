@@ -21,8 +21,8 @@ while True:
     if not (dowhile_licznik < 2):
         break
 
-for _ in range(2):
-    print("Petla powtorz-razy dziala.")
+wartosc_let = calkowita_zmienna + 10
+print("Konstrukcja funkcyjna niech:", wartosc_let)
 
 for i in range(3):
     if i == 1:
