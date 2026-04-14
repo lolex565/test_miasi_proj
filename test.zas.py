@@ -21,8 +21,7 @@ while True:
     if not (dowhile_licznik < 2):
         break
 
-wartosc_let = calkowita_zmienna + 10
-print("Konstrukcja funkcyjna niech:", wartosc_let)
+print("Konstrukcja funkcyjna zastosuj: dziala")
 
 for i in range(3):
     if i == 1:

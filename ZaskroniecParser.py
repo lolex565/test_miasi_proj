@@ -10,8 +10,8 @@ else:
 
 def serializedATN():
     return [
-        4,1,60,15,2,0,7,0,2,1,7,1,1,0,5,0,6,8,0,10,0,12,0,9,9,0,1,0,1,0,
-        1,1,1,1,1,1,0,0,2,0,2,0,1,1,0,1,60,13,0,7,1,0,0,0,2,12,1,0,0,0,4,
+        4,1,61,15,2,0,7,0,2,1,7,1,1,0,5,0,6,8,0,10,0,12,0,9,9,0,1,0,1,0,
+        1,1,1,1,1,1,0,0,2,0,2,0,1,1,0,1,61,13,0,7,1,0,0,0,2,12,1,0,0,0,4,
         6,3,2,1,0,5,4,1,0,0,0,6,9,1,0,0,0,7,5,1,0,0,0,7,8,1,0,0,0,8,10,1,
         0,0,0,9,7,1,0,0,0,10,11,5,0,0,1,11,1,1,0,0,0,12,13,7,0,0,0,13,3,
         1,0,0,0,1,7
@@ -30,27 +30,27 @@ class ZaskroniecParser ( Parser ):
     literalNames = [ "<INVALID>", "<INVALID>", "'albo_jesli'", "<INVALID>", 
                      "'dopoki'", "'dla'", "'w'", "'przerwij'", "'kontynuuj'", 
                      "'pomin'", "'wykonuj'", "'zdefiniuj'", "'zwroc'", "'klasa'", 
-                     "'dostarcz'", "'anonimowa'", "'niech'", "'oraz'", "<INVALID>", 
-                     "'nie'", "'jest'", "'Prawda'", "'Falsz'", "'Nic'", 
-                     "'zaimportuj'", "'z'", "'jako'", "'z_kontekstem'", 
-                     "'sprobuj'", "<INVALID>", "'wreszcie'", "'rzuc'", "'zapewnij'", 
-                     "'globalna'", "'nielokalna'", "'asynchronicznie'", 
-                     "'oczekuj'", "'usun'", "'wypisz'", "'zasieg'", "'dlugosc'", 
-                     "'napis'", "'calkowita'", "'zmienna_przecinkowa'", 
-                     "'logiczna'", "'lista'", "'slownik'", "'zbior'", "'krotka'", 
-                     "'bezwzgledna'", "'suma'", "'minimum'", "'maksimum'", 
-                     "'zaokraglij'", "'typ'", "'otworz'" ]
+                     "'dostarcz'", "'anonimowa'", "'zastosuj'", "'do'", 
+                     "'oraz'", "<INVALID>", "'nie'", "'jest'", "'Prawda'", 
+                     "'Falsz'", "'Nic'", "'zaimportuj'", "'z'", "'jako'", 
+                     "'z_kontekstem'", "'sprobuj'", "<INVALID>", "'wreszcie'", 
+                     "'rzuc'", "'zapewnij'", "'globalna'", "'nielokalna'", 
+                     "'asynchronicznie'", "'oczekuj'", "'usun'", "'wypisz'", 
+                     "'zasieg'", "'dlugosc'", "'napis'", "'calkowita'", 
+                     "'zmienna_przecinkowa'", "'logiczna'", "'lista'", "'slownik'", 
+                     "'zbior'", "'krotka'", "'bezwzgledna'", "'suma'", "'minimum'", 
+                     "'maksimum'", "'zaokraglij'", "'typ'", "'otworz'" ]
 
     symbolicNames = [ "<INVALID>", "IF", "ELIF", "ELSE", "WHILE", "FOR", 
                       "IN", "BREAK", "CONTINUE", "PASS", "DO", "DEF", "RETURN", 
-                      "CLASS", "YIELD", "LAMBDA", "LET", "AND", "OR", "NOT", 
-                      "IS", "TRUE", "FALSE", "NONE", "IMPORT", "FROM", "AS", 
-                      "WITH", "TRY", "EXCEPT", "FINALLY", "RAISE", "ASSERT", 
-                      "GLOBAL", "NONLOCAL", "ASYNC", "AWAIT", "DEL", "PRINT", 
-                      "RANGE", "LEN", "STR", "INT", "FLOAT", "BOOL", "LIST", 
-                      "DICT", "SET", "TUPLE", "ABS", "SUM", "MIN", "MAX", 
-                      "ROUND", "TYPE", "OPEN", "ID", "STRING", "NUMBER", 
-                      "WS", "SYMBOL" ]
+                      "CLASS", "YIELD", "LAMBDA", "APPLY", "TO", "AND", 
+                      "OR", "NOT", "IS", "TRUE", "FALSE", "NONE", "IMPORT", 
+                      "FROM", "AS", "WITH", "TRY", "EXCEPT", "FINALLY", 
+                      "RAISE", "ASSERT", "GLOBAL", "NONLOCAL", "ASYNC", 
+                      "AWAIT", "DEL", "PRINT", "RANGE", "LEN", "STR", "INT", 
+                      "FLOAT", "BOOL", "LIST", "DICT", "SET", "TUPLE", "ABS", 
+                      "SUM", "MIN", "MAX", "ROUND", "TYPE", "OPEN", "ID", 
+                      "STRING", "NUMBER", "WS", "SYMBOL" ]
 
     RULE_program = 0
     RULE_element = 1
@@ -73,51 +73,52 @@ class ZaskroniecParser ( Parser ):
     CLASS=13
     YIELD=14
     LAMBDA=15
-    LET=16
-    AND=17
-    OR=18
-    NOT=19
-    IS=20
-    TRUE=21
-    FALSE=22
-    NONE=23
-    IMPORT=24
-    FROM=25
-    AS=26
-    WITH=27
-    TRY=28
-    EXCEPT=29
-    FINALLY=30
-    RAISE=31
-    ASSERT=32
-    GLOBAL=33
-    NONLOCAL=34
-    ASYNC=35
-    AWAIT=36
-    DEL=37
-    PRINT=38
-    RANGE=39
-    LEN=40
-    STR=41
-    INT=42
-    FLOAT=43
-    BOOL=44
-    LIST=45
-    DICT=46
-    SET=47
-    TUPLE=48
-    ABS=49
-    SUM=50
-    MIN=51
-    MAX=52
-    ROUND=53
-    TYPE=54
-    OPEN=55
-    ID=56
-    STRING=57
-    NUMBER=58
-    WS=59
-    SYMBOL=60
+    APPLY=16
+    TO=17
+    AND=18
+    OR=19
+    NOT=20
+    IS=21
+    TRUE=22
+    FALSE=23
+    NONE=24
+    IMPORT=25
+    FROM=26
+    AS=27
+    WITH=28
+    TRY=29
+    EXCEPT=30
+    FINALLY=31
+    RAISE=32
+    ASSERT=33
+    GLOBAL=34
+    NONLOCAL=35
+    ASYNC=36
+    AWAIT=37
+    DEL=38
+    PRINT=39
+    RANGE=40
+    LEN=41
+    STR=42
+    INT=43
+    FLOAT=44
+    BOOL=45
+    LIST=46
+    DICT=47
+    SET=48
+    TUPLE=49
+    ABS=50
+    SUM=51
+    MIN=52
+    MAX=53
+    ROUND=54
+    TYPE=55
+    OPEN=56
+    ID=57
+    STRING=58
+    NUMBER=59
+    WS=60
+    SYMBOL=61
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -169,7 +170,7 @@ class ZaskroniecParser ( Parser ):
             self.state = 7
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 2305843009213693950) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 4611686018427387902) != 0):
                 self.state = 4
                 self.element()
                 self.state = 9
@@ -239,8 +240,11 @@ class ZaskroniecParser ( Parser ):
         def LAMBDA(self):
             return self.getToken(ZaskroniecParser.LAMBDA, 0)
 
-        def LET(self):
-            return self.getToken(ZaskroniecParser.LET, 0)
+        def APPLY(self):
+            return self.getToken(ZaskroniecParser.APPLY, 0)
+
+        def TO(self):
+            return self.getToken(ZaskroniecParser.TO, 0)
 
         def AND(self):
             return self.getToken(ZaskroniecParser.AND, 0)
@@ -397,7 +401,7 @@ class ZaskroniecParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 12
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 2305843009213693950) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 4611686018427387902) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

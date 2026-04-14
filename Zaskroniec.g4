@@ -6,7 +6,7 @@ element
     // Control Flow
     : IF | ELIF | ELSE | WHILE | FOR | IN | BREAK | CONTINUE | PASS | DO
     // Functions & Classes
-    | DEF | RETURN | CLASS | YIELD | LAMBDA | LET
+    | DEF | RETURN | CLASS | YIELD | LAMBDA | APPLY | TO
     // Logical & Identity
     | AND | OR | NOT | IS
     // Booleans & None
@@ -46,7 +46,8 @@ RETURN : 'zwroc';
 CLASS : 'klasa';
 YIELD : 'dostarcz';
 LAMBDA : 'anonimowa';
-LET : 'niech';
+APPLY : 'zastosuj';
+TO : 'do';
 
 // ==========================================
 // 3. Logical Operators & Identity (Operatory)

@@ -10,7 +10,7 @@ def transform_extended_constructs(code):
     transformed = []
     do_stack = []
 
-    let_pattern = re.compile(r'^(\s*)let\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+?)\s*(#.*)?$')
+    apply_pattern = re.compile(r'^(\s*)apply\s+(.+?)\s+to\s+(.+?)\s*(#.*)?$')
     do_pattern = re.compile(r'^(\s*)do\s*:\s*(#.*)?$')
     while_pattern = re.compile(r'^(\s*)while\s+(.+?)\s*(#.*)?$')
 
@@ -18,10 +18,10 @@ def transform_extended_constructs(code):
         stripped_line = line.rstrip('\r\n')
         newline = line[len(stripped_line):]
 
-        let_match = let_pattern.match(stripped_line)
-        if let_match:
-            indent, variable_name, expression, comment = let_match.groups()
-            new_line = f"{indent}{variable_name} = {expression}"
+        apply_match = apply_pattern.match(stripped_line)
+        if apply_match:
+            indent, function_expr, arg_expr, comment = apply_match.groups()
+            new_line = f"{indent}{function_expr}({arg_expr})"
             if comment:
                 new_line += f" {comment}"
             transformed.append(new_line + newline)
@@ -83,7 +83,8 @@ def main():
         ZaskroniecLexer.CLASS: "class",
         ZaskroniecLexer.YIELD: "yield",
         ZaskroniecLexer.LAMBDA: "lambda",
-        ZaskroniecLexer.LET: "let",
+        ZaskroniecLexer.APPLY: "apply",
+        ZaskroniecLexer.TO: "to",
         ZaskroniecLexer.TRUE: "True",
         ZaskroniecLexer.FALSE: "False",
         ZaskroniecLexer.NONE: "None",
