@@ -36,8 +36,11 @@ function activate(context) {
     });
 
     const filePath = editor.document.uri.fsPath;
+    const pythonCommand = vscode.workspace
+      .getConfiguration('zaskroniec')
+      .get('pythonCommand', 'python');
     terminal.show(true);
-    terminal.sendText(`python "${transpilerPath}" "${filePath}"`);
+    terminal.sendText(`${pythonCommand} "${transpilerPath}" "${filePath}"`);
   });
 
   context.subscriptions.push(disposable);

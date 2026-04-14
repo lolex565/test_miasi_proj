@@ -37,7 +37,7 @@ def transform_custom_constructs(code):
         while_match = while_pattern.match(stripped_line)
         if while_match and do_stack:
             indent, condition, comment = while_match.groups()
-            if len(indent) == do_stack[-1] and not condition.endswith(':'):
+            if len(indent) == do_stack[-1]:
                 do_stack.pop()
                 inner_indent = f"{indent}    "
                 transformed.append(f"{inner_indent}if not ({condition}):{newline}")

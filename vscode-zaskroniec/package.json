@@ -42,6 +42,16 @@
         "icon": "$(play)"
       }
     ],
+    "configuration": {
+      "title": "Zaskroniec",
+      "properties": {
+        "zaskroniec.pythonCommand": {
+          "type": "string",
+          "default": "python",
+          "description": "Polecenie interpretera Python używane do uruchamiania zaskroniec.py (np. python, python3, py)."
+        }
+      }
+    },
     "menus": {
       "editor/title": [
         {

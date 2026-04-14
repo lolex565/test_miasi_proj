@@ -11,3 +11,7 @@ Po kliknięciu uruchamiane jest polecenie:
 `python zaskroniec.py <aktywny_plik.zas>`
 
 w terminalu VS Code (z katalogu otwartego workspace).
+
+Możesz zmienić polecenie Pythona ustawieniem:
+
+`zaskroniec.pythonCommand` (np. `python3` albo `py`).
