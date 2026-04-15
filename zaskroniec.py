@@ -25,7 +25,7 @@ def transform_extended_constructs(code):
             if comment:
                 new_line += f" {comment}"
             transformed.append(new_line + newline)
-            continue
+            continue #continue wcześniej kończy jeden obieg pętli
 
         do_match = do_pattern.match(stripped_line)
         if do_match:
