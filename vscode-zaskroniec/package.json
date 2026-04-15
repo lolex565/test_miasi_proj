@@ -3,12 +3,16 @@
   "displayName": "Zaskroniec",
   "description": "Wsparcie skladni dla jezyka Zaskroniec",
   "version": "1.0.0",
+  "main": "./extension.js",
   "engines": {
     "vscode": "^1.80.0"
   },
   "publisher": "moj-projekt",
   "categories": [
     "Programming Languages"
+  ],
+  "activationEvents": [
+    "onCommand:zaskroniec.runFile"
   ],
   "contributes": {
     "languages": [
@@ -30,6 +34,32 @@
         "scopeName": "source.zas",
         "path": "./syntaxes/zaskroniec.tmLanguage.json"
       }
-    ]
+    ],
+    "commands": [
+      {
+        "command": "zaskroniec.runFile",
+        "title": "Uruchom plik Zaskroniec",
+        "icon": "$(play)"
+      }
+    ],
+    "configuration": {
+      "title": "Zaskroniec",
+      "properties": {
+        "zaskroniec.pythonCommand": {
+          "type": "string",
+          "default": "python",
+          "description": "Polecenie interpretera Python używane do uruchamiania zaskroniec.py (np. python, python3, py)."
+        }
+      }
+    },
+    "menus": {
+      "editor/title": [
+        {
+          "command": "zaskroniec.runFile",
+          "when": "resourceExtname == '.zas'",
+          "group": "navigation@100"
+        }
+      ]
+    }
   }
 }

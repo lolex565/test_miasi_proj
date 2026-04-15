@@ -14,6 +14,14 @@ dopoki licznik < 2:
         wypisz("Przerywam petle dopoki!")
         przerwij
 
+dowhile_licznik = 0
+wykonuj:
+    wypisz("Petla wykonuj-dopoki, przebieg", dowhile_licznik)
+    dowhile_licznik = dowhile_licznik + 1
+dopoki dowhile_licznik < 2
+
+zastosuj wypisz do "Konstrukcja funkcyjna zastosuj: dziala"
+
 dla i w zasieg(3):
     jezeli i == 1:
         pomin

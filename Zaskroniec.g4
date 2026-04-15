@@ -4,9 +4,9 @@ program : element* EOF ;
 
 element
     // Control Flow
-    : IF | ELIF | ELSE | WHILE | FOR | IN | BREAK | CONTINUE | PASS
+    : IF | ELIF | ELSE | WHILE | FOR | IN | BREAK | CONTINUE | PASS | DO
     // Functions & Classes
-    | DEF | RETURN | CLASS | YIELD | LAMBDA
+    | DEF | RETURN | CLASS | YIELD | LAMBDA | APPLY | TO
     // Logical & Identity
     | AND | OR | NOT | IS
     // Booleans & None
@@ -36,6 +36,7 @@ IN : 'w';
 BREAK : 'przerwij';
 CONTINUE : 'kontynuuj';
 PASS : 'pomin';
+DO : 'wykonuj';
 
 // ==========================================
 // 2. Functions & Classes (Funkcje i klasy)
@@ -45,6 +46,8 @@ RETURN : 'zwroc';
 CLASS : 'klasa';
 YIELD : 'dostarcz';
 LAMBDA : 'anonimowa';
+APPLY : 'zastosuj';
+TO : 'do';
 
 // ==========================================
 // 3. Logical Operators & Identity (Operatory)
